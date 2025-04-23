@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday Website</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fdf6f0;
+      text-align: center;
+      padding: 50px;
+    }
+
+    h1 {
+      color: #ff3399;
+    }
+
+    input[type="file"] {
+      margin: 20px 0;
+    }
+
+    #preview {
+      margin-top: 20px;
+      display: none;
+    }
+
+    #preview img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    #message {
+      font-size: 24px;
+      color: #ff3399;
+      margin-top: 20px;
+      font-weight: bold;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Upload a Picture for a Birthday Surprise! 🎂</h1>
+  <input type="file" id="imageInput" accept="image/*" />
+
+  <div id="preview">
+    <img id="imagePreview" src="" alt="Birthday Image" />
+    <div id="message">🎉 Happy Birthday! 🎉</div>
+  </div>
+
+  <script>
+    const imageInput = document.getElementById('imageInput');
+    const imagePreview = document.getElementById('imagePreview');
+    const previewContainer = document.getElementById('preview');
+    const message = document.getElementById('message');
+
+    imageInput.addEventListener('change', function () {
+      const file = this.files[0];
+
+      if (file) {
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+          imagePreview.src = e.target.result;
+          previewContainer.style.display = 'block';
+          message.style.display = 'block';
+        };
+
+        reader.readAsDataURL(file);
+      }
+    });
+  </script>
+
+</body>
+</html>
