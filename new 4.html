@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Website</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #ff7b7b, #ffb84d);
+      color: white;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-top: 20px;
+      color: #fff;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-top: 15px;
+      color: #fffcf9;
+      animation: fadeIn 1.5s ease-in-out 0.5s;
+    }
+
+    input[type="file"] {
+      margin: 20px 0;
+      padding: 15px;
+      background: #ff9800;
+      color: white;
+      font-size: 1.2rem;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    input[type="file"]:hover {
+      background-color: #ff6f00;
+      transform: scale(1.05);
+    }
+
+    #preview {
+      margin-top: 40px;
+      display: none;
+      animation: slideIn 1s ease-in-out;
+    }
+
+    #preview img {
+      max-width: 90%;
+      max-height: 400px;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      transition: transform 0.4s ease;
+    }
+
+    #preview img:hover {
+      transform: scale(1.1);
+    }
+
+    #message {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #ffeb3b;
+      margin-top: 20px;
+      animation: fadeIn 1.5s ease-in-out 1s;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      padding: 15px;
+      background-color: #212121;
+      color: #fffcf9;
+      font-size: 1rem;
+      text-align: center;
+      box-shadow: 0 -3px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Keyframe animations */
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    @keyframes slideIn {
+      0% { transform: translateY(20px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎉 Welcome to My Birthday Celebration! 🎂</h1>
+  <h2>Upload a Picture for the Fun!</h2>
+
+  <input type="file" id="imageInput" accept="image/*" />
+
+  <div id="preview">
+    <img id="imagePreview" src="" alt="Birthday Image" />
+    <div id="message">🎉 Happy Birthday! 🎉</div>
+  </div>
+
+  <footer>
+    &copy; 2025 | Happy Birthday Website | Designed with ❤️
+  </footer>
+
+  <script>
+    const imageInput = document.getElementById('imageInput');
+    const imagePreview = document.getElementById('imagePreview');
+    const previewContainer = document.getElementById('preview');
+    const message = document.getElementById('message');
+
+    imageInput.addEventListener('change', function () {
+      const file = this.files[0];
+
+      if (file) {
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+          imagePreview.src = e.target.result;
+          previewContainer.style.display = 'block';
+          message.style.display = 'block';
+        };
+
+        reader.readAsDataURL(file);
+      }
+    });
+  </script>
+
+</body>
+</html>
